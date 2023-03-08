@@ -10,3 +10,15 @@ export const Container = styled.div`
   "content";
 
 `
+
+export const Links = styled.ul`
+li {
+  margin-top: 1.2rem;
+}
+
+a{
+  color: ${({theme})=> theme.COLORS.WHITE};
+}
+
+
+`;

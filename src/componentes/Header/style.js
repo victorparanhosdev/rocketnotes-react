@@ -43,7 +43,8 @@ display: flex;
 
 export const Logout = styled.button`
 border: none;
-background-color: none;
+background: none;
+display: flex;
 
 > svg {
   font-size: 3.6rem;
