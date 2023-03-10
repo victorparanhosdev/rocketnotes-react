@@ -8,6 +8,13 @@ background-color: ${({theme})=> theme.COLORS.BACKGROUND_900};
 color: ${({theme})=> theme.COLORS.GRAY_300};
 margin-bottom: 0.8rem;
 border-radius: 1rem;
+transition: outline ease-in-out 0.3s;
+outline: 2px solid transparent;
+:focus-within{
+
+  outline: 2px solid ${({theme})=> theme.COLORS.ORANGE};
+}
+
 
 > input {
   height: 5.6rem;
@@ -16,14 +23,18 @@ border-radius: 1rem;
   color: ${({theme})=> theme.COLORS.WHITE};
   background: transparent;
   border: none;
+  outline: none;
+
 
 
   &::placeholder{
     color: ${({theme})=> theme.COLORS.GRAY_300}
+   
   }
+
   
 }
->svg {
+> svg {
     margin-left: 1.6rem;
 }
 
