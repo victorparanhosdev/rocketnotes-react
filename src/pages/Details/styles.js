@@ -36,5 +36,15 @@ flex-direction: column;
 > button{
   place-self: end;
 }
+> h1{
+  font-size: 3.6rem;
+  padding-top: 6.4rem;
+  font-weight: 500;
+}
+> p {
+  font-size: 1.6rem;
+  margin-top: 1.6rem;
+  text-align: justify;
+}
 
 `
