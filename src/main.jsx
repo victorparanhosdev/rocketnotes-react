@@ -8,13 +8,13 @@ import GlobalStyles from './styles/global'
 import {SignIn} from './pages/Signin'
 import {SignUp} from './pages/SignUp'
 import {Profile} from './pages/Profile'
-import {New} from './pages/New'
+import {Routes} from './routes'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
     <GlobalStyles/>
-    <New/>
+    <Routes/>
     </ThemeProvider>
   </React.StrictMode>,
 )

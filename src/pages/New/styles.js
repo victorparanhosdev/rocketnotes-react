@@ -8,6 +8,21 @@ display: grid;
 grid-template-rows: 10.5rem auto;
 grid-template-areas: "header" "content";
 
+> main {
+  grid-area: content;
+  overflow-y: auto;
+  
+}
+.tags {
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  div {
+    min-width: 27rem;
+  }
+
+}
+
 `;
 export const Form = styled.form`
 

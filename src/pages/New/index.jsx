@@ -3,6 +3,7 @@ import { Input } from '../../componentes/Input';
 import { Textarea } from '../../componentes/Textarea';
 import { NoteItem } from '../../componentes/NoteItem';
 import { Section} from '../../componentes/Section';
+import { Button} from '../../componentes/Button';
 import {Container, Form} from './styles';
 
 export function New(){
@@ -22,9 +23,18 @@ export function New(){
           <Section title="Links úteis">
 
             <NoteItem value="https://victorparanhos.com"/>
-            <NoteItem isNew/>
+            <NoteItem isNew placeholder="Novo Link"/>
 
           </Section>
+          <Section title="Marcadores">
+            <div className="tags" >
+            <NoteItem value="react"/>
+            <NoteItem isNew placeholder="Nova Tag"/>
+            </div>        
+          </Section>
+
+          <Button name="Salvar"/>
+          
         </Form>
       
 
