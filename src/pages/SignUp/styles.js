@@ -26,6 +26,7 @@ text-align: center;
 > h2 {
   font-size: 2.4rem;
   margin: 4.8rem 0;
+
 }
 
 > p {
