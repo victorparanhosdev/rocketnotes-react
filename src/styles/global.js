@@ -13,12 +13,13 @@ export default createGlobalStyle`
 }
 
 body {
-  font-size: 1.6rem;
+ 
   background-color: ${({theme}) => theme.COLORS.BACKGROUND_800};
   color: ${({theme})=> theme.COLORS.WHITE};
 }
 
 body * {
+  font-size: 1.6rem;
   font-family: 'Open Sans', sans-serif;
 }
 a {
