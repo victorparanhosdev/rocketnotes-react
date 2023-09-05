@@ -1,12 +1,14 @@
 import {createContext, useContext} from "react"
-import {api} from "../services/api"
+import { api } from "../services/api"
+
 const AuthContext = createContext({})
+
 function AuthProvider({children}){
   async function signIn({email, passowrd}){
-
+    
   }
     return(
-        <AuthContext.Provider value={{name: "victor@email.com"}}>
+        <AuthContext.Provider value={{victor: "victor"}}>
         {children}
         </AuthContext.Provider>
     )
