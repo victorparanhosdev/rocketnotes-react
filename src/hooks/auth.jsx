@@ -31,19 +31,22 @@ function AuthProvider({children}){
         
     }
 
-    async function updateProfile({user}) {
+    async function updateProfile({user, avatarFile}) {
         try {
-          // Remove a senha do objeto "user"
-          const { password, old_password, ...userData } = user;
-      
+            const { password, old_password, ...userData } = user;
+            if(avatarFile){
+                const fileUploadForm = new FormData()
+                fileUploadForm.append("avatar", avatarFile)
+                const response = await api.patch("/users/avatar", fileUploadForm)
+                user.avatar = response.data.avatar
+            }
+       
           await api.put("/users", user);
-          
-          // Armazena o objeto "userData" sem a senha no localStorage
-          localStorage.setItem("rocketnotes:@user", JSON.stringify(userData));
-          
+        
           setData({ user, token: data.token });
-      
           alert("Perfil atualizado");
+          localStorage.setItem("rocketnotes:@user", JSON.stringify(userData));    
+          
         } catch(error) {
           if(error.response) {
             alert(error.response.data.message);
