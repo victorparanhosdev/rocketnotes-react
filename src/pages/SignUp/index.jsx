@@ -2,24 +2,24 @@
 import { Input } from "../../componentes/Input";
 import { FiMail, FiLock, FiUser } from "react-icons/fi";
 import { Button } from "../../componentes/Button";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Container, Form, Background } from "./styles";
 import { api } from "../../services/api"
 import { useState } from "react"
 
-export function SignUp(){
 
+export function SignUp(){
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
+  const navigate = useNavigate()
   function HandleSignUp(){
     if(!name || !email || !password){
       return alert("Por Favor, Preencha todos os campos")
     }
     api.post("/users", {name, email, password}).then(()=> {
       alert("Usuario Cadastrado com sucesso")
-
+      navigate("/");
     }).catch(error => {
       if(error.response){
         alert(error.response.data.message)
