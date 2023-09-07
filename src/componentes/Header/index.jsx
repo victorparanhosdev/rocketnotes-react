@@ -16,7 +16,7 @@ export function Header(){
           <strong>{user.name}</strong>
         </div>
       </Profile>
-    <Logout onClick={signOut}>
+    <Logout to="/" onClick={signOut}>
     <RiShutDownLine/>
     </Logout>
    

@@ -1,13 +1,18 @@
 import { createContext, useContext, useState, useEffect } from "react";
+
 import { api } from "../services/api";
 const AuthContext = createContext({})
 
+
 function AuthProvider({children}){
     const [data, setData] = useState({})
+
     function signOut(){
+
         localStorage.removeItem("rocketnotes:@token")
         localStorage.removeItem("rocketnotes:@user")
         setData({})
+     
     }
     async function signIn({email, password}){
 

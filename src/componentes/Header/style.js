@@ -46,7 +46,7 @@ align-items: center;
 
 `;
 
-export const Logout = styled.button`
+export const Logout = styled(Link)`
 border: none;
 background: none;
 display: flex;
