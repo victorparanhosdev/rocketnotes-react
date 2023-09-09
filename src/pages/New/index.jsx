@@ -6,8 +6,19 @@ import { Section} from '../../componentes/Section';
 import { Button} from '../../componentes/Button';
 import {Container, Form} from './styles';
 import {Link} from 'react-router-dom';
+import { useState } from 'react';
+
 
 export function New(){
+const [links, setLinks] = useState([])
+const [newLink, setNewLinks] = useState("")
+function handleAddLink(){
+  setLinks(prevState => [...prevState, newLink])
+  setNewLinks("")
+}
+function handleRemoveLink(deleted){
+  setLinks(prevState => prevState.filter(link => link !== deleted))
+} 
 
   return(
     <Container>
@@ -22,9 +33,8 @@ export function New(){
           <Input placeholder="Título"/>
           <Textarea placeholder="Observações"/>
           <Section title="Links úteis">
-
-            <NoteItem value="https://victorparanhos.com"/>
-            <NoteItem isNew placeholder="Novo Link"/>
+            {links.map((link, index )=> <NoteItem key={String(index)} value={link} onClick={()=> handleRemoveLink(link)}/>)}
+            <NoteItem isNew value={newLink} onChange={e => setNewLinks(e.target.value)} onClick={handleAddLink} placeholder="Novo Link"/>
 
           </Section>
           <Section title="Marcadores">
