@@ -5,37 +5,66 @@ import {Header} from '../../componentes/Header'
 import {Section} from '../../componentes/Section'
 import {ButtonText} from '../../componentes/ButtonText'
 import {Tag} from '../../componentes/Tags'
-
+import { api } from '../../services/api'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 export function Details() {
+const [data, setData] = useState(null)
+const navigate = useNavigate()
+const params = useParams()
+function handleBack(){
+  navigate(-1)
+}
 
+useEffect(()=> {
+  async function fetchNotes(){
+      const response = await api.get(`/notes/${params.id}`)
+      setData(response.data)
+  }
+
+  fetchNotes()
+
+}, [])
   return(
     <Container>
       <Header/>
       
-
+    { data &&
       <main>
-          <Content>
-          <ButtonText isActive title="Excluir Nota"/>
+      <Content>
+      <ButtonText isActive title="Excluir Nota"/>
 
-          <h1>Introdução React</h1>
+      <h1>{data.title}</h1>
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quae minima sapiente est iusto eaque, veritatis perspiciatis explicabo nobis ipsum saepe aspernatur eius nesciunt, officiis inventore. Esse repellat est inventore.</p>
-            <Section title="Links úteis">
-              <Links>
-                <li><a href="#">http://www.victor.com.br</a></li>
-                <li><a href="#">http://www.victor.com.br</a></li>
-              </Links> 
-            </Section>
-            
-            <Section title="Marcadores">
-            <Tag title="express"/>
-            <Tag title="node"/>
-            </Section>
+      <p>{data.description}</p>
 
-              <Button name="Voltar"/>
+      { data.links &&
+        <Section title="Links úteis">
+        <Links>
+        {
+          data.links.map(link =><li key={String(link.id)}><a href={link.url} target="_blank">{link.url}</a></li>)
+        }        
+        </Links>
+  
+        </Section>
+        }
 
-          </Content>
+        { data.tags &&
+        <Section title="Marcadores">
+          {
+            data.tags.map(tag=> <Tag key={String(tag.id)} title={tag.name}/>)
+          }
+
+        </Section>
+        }
+          <Button onClick={handleBack} name="Voltar"/>
+
+      </Content>
       </main>
+
+
+    }
+
     </Container>
   )
 }
