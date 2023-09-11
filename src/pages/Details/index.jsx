@@ -12,13 +12,25 @@ export function Details() {
 const [data, setData] = useState(null)
 const navigate = useNavigate()
 const params = useParams()
+
 function handleBack(){
   navigate(-1)
+}
+
+async function handleRemoveNotes(id){
+  const isOk = confirm("Tem certeza que deseja excluir a nota?")
+  if(isOk){
+    await api.delete(`/notes/${id}`)
+
+  }
+  navigate(-1)
+
 }
 
 useEffect(()=> {
   async function fetchNotes(){
       const response = await api.get(`/notes/${params.id}`)
+  
       setData(response.data)
   }
 
@@ -32,7 +44,7 @@ useEffect(()=> {
     { data &&
       <main>
       <Content>
-      <ButtonText isActive title="Excluir Nota"/>
+      <ButtonText onClick={()=> handleRemoveNotes(data.id)} isActive title="Excluir Nota"/>
 
       <h1>{data.title}</h1>
 
@@ -42,7 +54,7 @@ useEffect(()=> {
         <Section title="Links úteis">
         <Links>
         {
-          data.links.map(link =><li key={String(link.id)}><a href={link.url} target="_blank">{link.url}</a></li>)
+          data.links.map(link =><li key={String(link.id)}><a href={`https://${link.url}`} target="_blank">{link.url}</a></li>)
         }        
         </Links>
   
